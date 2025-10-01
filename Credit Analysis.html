@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Credit Analysis: Alpha College</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            300: '#a5b4fc',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                            900: '#312e81',
+                        },
+                        'neutral': {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.9) 0%, rgba(49, 46, 129, 0.8) 100%);
+        }
+        
+        .toc-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            z-index: 40;
+            overflow-y: auto;
+        }
+        
+        .content-offset {
+            margin-left: 280px;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 1.5rem;
+            height: 400px;
+        }
+        
+        .bento-main {
+            grid-row: 1 / 3;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bento-side {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .toc-fixed {
+                display: none;
+            }
+            .content-offset {
+                margin-left: 0;
+            }
+            .bento-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                height: auto;
+            }
+            .bento-main {
+                grid-row: 1;
+            }
+        }
+        
+        .citation-link {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #6366f1;
+        }
+        
+        .citation-link:hover {
+            background-color: rgba(99, 102, 241, 0.1);
+        }
+    </style>
+  </head>
+
+  <body class="font-sans bg-neutral-50 text-neutral-900 smooth-scroll overflow-x-hidden">
+
+    <!-- Fixed Table of Contents -->
+    <nav class="toc-fixed w-72 bg-white shadow-xl border-r border-neutral-200">
+      <div class="p-6">
+        <div class="mb-8">
+          <h3 class="font-serif font-bold text-xl text-neutral-800 mb-2">Index</h3>
+          <div class="w-12 h-0.5 bg-primary-400"></div>
+        </div>
+
+        <ul class="space-y-3 text-sm">
+          <li>
+            <a href="#executive-summary" class="block py-2 px-3 rounded text-neutral-600 hover:bg-primary-100 hover:text-primary-700 transition-colors">Summary</a>
+          </li>
+          <li>
+            <a href="#credit-analysis" class="block py-2 px-3 rounded text-neutral-600 hover:bg-primary-100 hover:text-primary-700 transition-colors">Credit Analysis</a>
+          </li>
+
+          <li class="ml-4">
+            <a href="#negative-points" class="block py-1 px-3 rounded text-neutral-500 hover:bg-primary-50 hover:text-primary-600 transition-colors">Risks</a>
+          </li>
+          <li class="mt-4">
+            <a href="#financial-metrics" class="block py-2 px-3 rounded text-neutral-600 hover:bg-primary-100 hover:text-primary-700 transition-colors">Financial Metrics</a>
+          </li>
+          <li class="ml-4">
+            <a href="#final-decision" class="block py-1 px-3 rounded text-neutral-500 hover:bg-primary-50 hover:text-primary-600 transition-colors">Final Decision</a>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content-offset">
+      <!-- Hero Section -->
+      <section class="relative min-h-screen bg-neutral-900">
+        <div class="bento-grid max-w-7xl mx-auto p-8">
+          <!-- Main Content Area -->
+          <div class="bento-main relative">
+            <div class="absolute inset-0">
+              <img src="https://kimi-web-img.moonshot.cn/img/www.dysonjanzen.com/bc53e62e11177769319e8c5df7cc4f2035f2eede.jpg" alt="Modern school building at sunset" class="w-full h-full object-cover rounded-2xl" size="large" aspect="wide" style="photo" query="modern school building sunset" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+              <div class="hero-overlay absolute inset-0 rounded-2xl"></div>
+            </div>
+
+            <div class="relative z-10 h-full flex flex-col justify-center p-12 text-white">
+              <div class="mb-8">
+                <span class="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-6">
+                  Strategic Credit Analysis
+                </span>
+                <h1 class="font-serif text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                  <span class="italic">Credit Decision:</span>
+                  <br/>
+                  Alpha College
+                </h1>
+                <p class="text-xl opacity-90 max-w-lg">
+                  A detailed analysis of the loan application and its strategic feasibility
+                </p>
+              </div>
+
+              <div class="flex items-center space-x-6 text-sm opacity-80">
+                <div class="flex items-center">
+                  <i class="fas fa-calendar-alt mr-2"></i>
+                  <span>September 2025</span>
+                </div>
+                <div class="flex items-center">
+                  <i class="fas fa-chart-line mr-2"></i>
+                  <span>Complete Analysis</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Side Elements -->
+          <div class="bento-side">
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-white border border-white/20">
+              <h3 class="font-serif text-xl font-bold mb-4">Overview</h3>
+              <div class="space-y-4 text-sm">
+                <div class="flex justify-between">
+                  <span>Requested Amount:</span>
+                  <span class="font-semibold">R$ 1.2MM</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Term:</span>
+                  <span class="font-semibold">36 months</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Projected Cash Flow 2025:</span>
+                  <span class="font-semibold">R$ 10.5MM</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Number of Students:</span>
+                  <span class="font-semibold">820</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Average Ticket:</span>
+                  <span class="font-semibold">R$ 975</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-white border border-white/20">
+              <h3 class="font-serif text-xl font-bold mb-4">Decision</h3>
+              <div class="flex items-center mb-3">
+                <div class="risk-indicator risk-medium"></div>
+                <span class="font-semibold">Conditional Approval</span>
+              </div>
+              <p class="text-sm opacity-90">
+                Approval subject to guarantees and financial covenants
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Executive Summary -->
+      <section id="executive-summary" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-8">
+          <div class="text-center mb-16">
+            <h2 class="font-serif text-4xl font-bold text-neutral-900 mb-6">Executive Summary</h2>
+            <div class="w-24 h-1 bg-primary-400 mx-auto mb-8"></div>
+          </div>
+
+          <div class="highlight-box rounded-2xl p-8 mb-12">
+            <div class="flex items-start space-x-4">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center">
+                  <i class="fas fa-balance-scale text-white text-lg"></i>
+                </div>
+              </div>
+              <div>
+                <h3 class="font-serif text-2xl font-bold text-neutral-800 mb-4">Credit Analysis Overview</h3>
+                <p class="text-lg text-neutral-700 leading-relaxed">
+                  The credit application from Alpha College can be <strong>approved with conditions</strong>, aiming for loan repayment through <strong>control of its current debt</strong>, thus ensuring the company receives its payments. The decision is based on balancing the growth trajectory the college has shown with its cash generation capacity, indicating possible feasibility in releasing the requested credit. The significant risks associated with its high level of indebtedness, leverage, and history with expenses are factors considered in this analysis.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8">
+              <h4 class="font-serif text-xl font-bold text-graphite-800 mb-4">
+                <i class="fas fa-arrow-trend-up text-green-500 mr-2"></i>
+                Strengths
+              </h4>
+              <ul class="space-y-3 text-graphite-700">
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                  <span>Consistent revenue growth: R$ 7.2MM (2022) → R$ 8.5MM (2023) → R$ 9.6MM (2024)</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                  <span>Positive cash flow generation: EBITDA R$ 1.1MM</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                  <span>Strategic purpose: property acquisition</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                  <span>18-month relationship history with Isaac</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-8">
+              <h4 class="font-serif text-xl font-bold text-graphite-800 mb-4">
+                <i class="fas fa-exclamation-triangle text-red-500 mr-2"></i>
+                Risk Factors
+              </h4>
+              <ul class="space-y-3 text-graphite-700">
+                <li class="flex items-start">
+                  <i class="fas fa-exclamation-triangle text-red-500 mt-1 mr-3"></i>
+                  <span>High debt level: DSCR 0.49x</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-exclamation-triangle text-red-500 mt-1 mr-3"></i>
+                  <span>Supplier protests (R$ 18k)</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-exclamation-triangle text-red-500 mt-1 mr-3"></i>
+                  <span>SCR (CNPJ): Existing line of R$ 1MM</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-exclamation-triangle text-red-500 mt-1 mr-3"></i>
+                  <span>History of maintainer delays</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="highlight-box rounded-2xl p-8 mt-12">
+            <div class="flex items-start space-x-4">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center">
+                  <i class="fas fa-question-circle text-white text-lg"></i>
+                </div>
+              </div>
+              <div>
+                <h3 class="font-serif text-2xl font-bold text-neutral-800 mb-4">Questions to Consider</h3>
+                <ul class="space-y-3 text-neutral-700 list-disc list-inside">
+                  <li>What is the student capacity limit at the school? (possible limitation on revenue that has been declining over the years)</li>
+                  <li>What is the proportion of students at the beginning and end of the school period? (possible revenue decline if there are many students in the final year of education)</li>
+                  <li>What is the value of the rent that will be added to the cash flow? (increase in revenue)</li>
+                  <li>Has the school had a history of increasing the average ticket? (possible increase in churn)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Credit Analysis -->
+      <section id="credit-analysis" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-8">
+          <div class="text-center mb-16">
+            <h2 class="font-serif text-4xl font-bold text-graphite-900 mb-6">Detailed Credit Analysis</h2>
+            <div class="w-24 h-1 bg-earth-400 mx-auto mb-8"></div>
+            <p class="text-xl text-graphite-600 max-w-3xl mx-auto">
+              Evaluation of the R$ 1.2MM loan application in 36 installments
+            </p>
+          </div>
+
+          <!-- Company Overview -->
+          <div class="mb-16">
+            <div class="bg-gradient-to-r from-earth-50 to-graphite-50 rounded-3xl p-8 mb-12">
+              <h3 class="font-serif text-2xl font-bold text-graphite-800 mb-8">Operation Overview</h3>
+              <div class="grid lg:grid-cols-3 gap-8">
+                <div class="space-y-4">
+                  <h4 class="font-semibold text-graphite-800">School Data</h4>
+                  <div class="space-y-2 text-sm">
+                    <div class="flex justify-between">
+                      <span class="text-graphite-600">Name:</span>
+                      <span class="font-medium">Alpha College</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-graphite-600">Isaac Partnership:</span>
+                      <span class="font-medium">18 months</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-graphite-600">Number of Students:</span>
+                      <span class="font-medium">820</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-graphite-600">Average Ticket:</span>
+                      <span class="font-medium">R$ 975</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="space-y-4">
+                  <h4 class="font-semibold text-graphite-800">Request</h4>
+                  <div class="space-y-2 text-sm">
+                    <div class="flex justify-between">
+                      <span class="text-graphite-600">Product:</span>
+                      <span class="font-medium">Installment Loan</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-graphite-600">Amount:</span>
+                      <span class="font-medium">R$ 1.2MM</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-graphite-600">Term:</span>
+                      <span class="font-medium">36 months</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-graphite-600">Purpose:</span>
+                      <span class="font-medium">Property acquisition</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="space-y-4">
+                  <h4 class="font-semibold text-graphite-800">Financial Performance</h4>
+                  <div class="space-y-2 text-sm">
+                    <div class="flex justify-between">
+                      <span class="text-graphite-600">Revenue 2024:</span>
+                      <span class="font-medium">R$ 9.6MM</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-graphite-600">2025 Projection:</span>
+                      <span class="font-medium">R$ 10.5MM</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-graphite-600">DSCR:</span>
+                      <span class="font-medium">0.49x</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-graphite-600">Projected Leverage:</span>
+                      <span class="font-medium">31.95%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DSCR Calculation -->
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold text-graphite-900 mb-8">Debt Service Coverage Ratio (DSCR) Calculation</h3>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+              <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8">
+                <div class="text-center mb-6">
+                  <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-coins text-white text-2xl"></i>
+                  </div>
+                  <h4 class="font-serif text-xl font-bold text-graphite-800">Projected Cash Flow</h4>
+                  <div class="text-3xl font-bold text-green-600 mt-2">R$ 10.5MM</div>
+                  <div class="text-sm text-graphite-600">for 2025</div>
+                </div>
+                <div class="space-y-2 text-sm">
+                  <div class="flex justify-between">
+                    <span>Net Revenue:</span>
+                    <span class="font-medium">R$ 10.5MM</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Costs + Expenses:</span>
+                    <span class="font-medium">R$ 9.4MM</span>
+                  </div>
+                  <hr class="my-2"/>
+                  <div class="flex justify-between font-bold">
+                    <span>EBITDA:</span>
+                    <span>R$ 1.1MM</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-8">
+                <div class="text-center mb-6">
+                  <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-credit-card text-white text-2xl"></i>
+                  </div>
+                  <h4 class="font-serif text-xl font-bold text-graphite-800">Debt Service</h4>
+                  <div class="text-3xl font-bold text-red-600 mt-2">R$ 186k</div>
+                  <div class="text-sm text-graphite-600">monthly consolidated</div>
+                </div>
+                <div class="space-y-2 text-sm">
+                  <div class="flex justify-between">
+                    <span>Existing Loan:</span>
+                    <span class="font-medium">R$ 35.0k</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>SCR (CNPJ):</span>
+                    <span class="font-medium">R$ 100.0k</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>New Loan:</span>
+                    <span class="font-medium">R$ 51k</span>
+                  </div>
+                  <hr class="my-2"/>
+                  <div class="flex justify-between font-bold">
+                    <span>Total Monthly:</span>
+                    <span>R$ 186k</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-2xl p-8">
+                <div class="text-center mb-6">
+                  <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-balance-scale text-white text-2xl"></i>
+                  </div>
+                  <h4 class="font-serif text-xl font-bold text-graphite-800">DSCR</h4>
+                  <div class="text-3xl font-bold text-yellow-600 mt-2">0.49x</div>
+                  <div class="text-sm text-graphite-600">high risk</div>
+                </div>
+                <div class="space-y-2 text-sm">
+                  <div class="flex justify-between">
+                    <span>Monthly EBITDA:</span>
+                    <span class="font-medium">R$ 91.6k</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Monthly Debt:</span>
+                    <span class="font-medium">R$ 186k</span>
+                  </div>
+                  <hr class="my-2"/>
+                  <div class="flex justify-between font-bold">
+                    <span>DSCR:</span>
+                    <span class="text-yellow-600">0.49x</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Final Decision -->
+      <section id="final-decision" class="mb-16">
+        <div class="highlight-box rounded-3xl p-10">
+          <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-20 h-20 bg-earth-500 rounded-full mb-6">
+              <i class="fas fa-check text-white text-2xl"></i>
+            </div>
+            <h3 class="font-serif text-3xl font-bold text-graphite-800 mb-4">Final Decision: Future Conditional Approval</h3>
+            <p class="text-xl text-graphite-600 max-w-3xl mx-auto">
+              Based on risk and opportunity analysis, we recommend approval of the operation with specific conditions for risk mitigation.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="font-serif text-xl font-bold text-graphite-800 mb-4">Approval Justification</h4>
+              <ul class="space-y-3 text-graphite-700">
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                  <span>Solid growth trajectory and healthy demand for services</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                  <span>Positive cash flow generation (EBITDA R$ 1.1MM)</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                  <span>Strategic purpose: property acquisition</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                  <span>18-month relationship history with Isaac</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 class="font-serif text-xl font-bold text-graphite-800 mb-4">Structural Conditions</h4>
+              <ul class="space-y-3 text-graphite-700">
+                <li class="flex items-start">
+                  <i class="fas fa-shield-alt text-earth-500 mt-1 mr-3"></i>
+                  <span>Real guarantees: fiduciary assignment of the building</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-chart-line text-earth-500 mt-1 mr-3"></i>
+                  <span>Financial covenants: minimum DSCR 1.2x</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-file-contract text-earth-500 mt-1 mr-3"></i>
+                  <span>Continuous performance monitoring</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-clock text-earth-500 mt-1 mr-3"></i>
+                  <span>Regularization of pending issues before disbursement</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-earth-500 mt-1 mr-3"></i>
+                  <span>Settlement of existing debts: contracted line of R$ 1MM SCR and protests R$ 18k</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-earth-500 mt-1 mr-3"></i>
+                  <span>Total debt value not exceeding 35%</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="bg-primary-900 text-white py-16">
+        <div class="max-w-6xl mx-auto px-8">
+          <div class="text-center">
+            <h3 class="font-serif text-2xl font-bold mb-4">Conclusion</h3>
+            <p class="text-gray-300 max-w-3xl mx-auto">
+              Based on detailed analysis, the credit application from Alpha College is recommended for conditional approval with appropriate risk mitigation measures.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+  </body>
+</html>
